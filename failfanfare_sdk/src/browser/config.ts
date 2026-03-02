@@ -1,20 +1,17 @@
 import type { FailFanfareOptions, ResolvedConfig, SoundEvent } from "./types";
 
-import aabeSaale from "../sounds/aabe_saale.mp3";
-import bruh from "../sounds/bruh.mp3";
-import eh from "../sounds/eh.mp3";
-import ohMyGodWow from "../sounds/oh_my_god_wow.mp3";
-import spiderMan32 from "../sounds/spider_man_32.mp3";
+const CDN_BASE =
+  "https://raw.githubusercontent.com/Lancerhawk/FailFanfare-SDK/main/failfanfare_sdk/src/sounds";
 
 const DEFAULT_VOLUME = 0.7;
 const DEFAULT_THROTTLE_MS = 2000;
 
 const DEFAULT_SOUNDS: Record<SoundEvent, string> = {
-  runtime: aabeSaale,
-  promise: bruh,
-  console: eh,
-  critical: spiderMan32,
-  success: ohMyGodWow,
+  runtime: `${CDN_BASE}/aabe_saale.mp3`,
+  promise: `${CDN_BASE}/bruh.mp3`,
+  console: `${CDN_BASE}/eh.mp3`,
+  critical: `${CDN_BASE}/spider_man_32.mp3`,
+  success: `${CDN_BASE}/oh_my_god_wow.mp3`,
 };
 
 export function resolveConfig(options?: FailFanfareOptions): ResolvedConfig {

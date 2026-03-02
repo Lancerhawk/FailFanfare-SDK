@@ -2,17 +2,30 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.0] - 2026-03-02
+
+### Added
+
+- **Unified Configuration**: CLI now discovers settings in `package.json` or `failfanfare.config.json`.
+- **Custom Sound Support**: Use your own MP3 files for all events in CLI and Browser.
+- **Windows Audio Fix**: Native MP3 support via PowerShell `MediaPlayer` (rock-solid).
+- **Diagnostic Logging**: CLI logs `[failfanfare] 🎺 Playing Sound...` for detection proof.
+- **Key Parity**: CLI understands browser keys (`runtime`, `console`, `promise`) for zero-manual-config.
+
+### Fixed
+
+- Fixed CLI audio loop bug on single errors.
+- Fixed process exit race condition on crash (added 2s audio delay).
+
 ## [0.2.0] - 2026-03-02
 
 ### Added
 
-- Hybrid SDK: browser mode (existing) + new Node CLI mode.
+- Hybrid SDK: Browser mode + new Node CLI mode.
 - CLI wraps any dev-server command (`npx failfanfare next dev`).
-- Sound triggers on dev-server startup, crash, and unclean exit.
-- `src/cli/` with `index.ts` and `watcher.ts`.
-- `src/shared/audio.player.ts` for Node-compatible OS audio playback.
-- Split tsup build into 3 configs: browser, adapters, CLI.
-- MP3 sounds now copied to `dist/sounds/` for CLI use.
+- Native OS audio playback for Node.js (aplay, afplay, powershell).
+- Refactored project structure: `src/browser`, `src/cli`, `src/shared`.
+- Optimized browser bundle: moved assets to CDN (220KB -> 4KB).
 
 ## [0.1.0] - 2026-03-02
 

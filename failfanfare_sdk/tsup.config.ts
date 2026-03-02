@@ -15,7 +15,6 @@ export default defineConfig([
     clean: true,
     target: "es2017",
     platform: "browser",
-    loader: { ".mp3": "base64" },
     outExtension({ format }) {
       if (format === "cjs") return { js: ".cjs" };
       if (format === "iife") return { js: ".global.js" };
@@ -41,7 +40,6 @@ export default defineConfig([
     sourcemap: true,
     target: "es2017",
     platform: "browser",
-    loader: { ".mp3": "base64" },
     outExtension({ format }) {
       return { js: format === "cjs" ? ".cjs" : ".js" };
     },

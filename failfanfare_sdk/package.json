@@ -1,6 +1,6 @@
 {
   "name": "failfanfare",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Plays humorous sound effects when runtime errors occur. Also wraps your dev server CLI with crash sound detection.",
   "author": "Lancerhawk",
   "license": "MIT",

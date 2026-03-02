@@ -29,6 +29,21 @@ export function startRuntime(config: ResolvedConfig): void {
       _originalConsoleError(...args);
       trigger("console");
     };
+
+    if (enableSuccessSound) {
+      const _originalConsoleLog = console.log.bind(console);
+      console.log = (...args: unknown[]): void => {
+        _originalConsoleLog(...args);
+        const str = args.join(" ");
+        if (
+          !successPlayed &&
+          /ready|compiled successfully|local:|started|listening/i.test(str)
+        ) {
+          successPlayed = true;
+          trigger("success");
+        }
+      };
+    }
   }
 
   if (enableSuccessSound && !successPlayed) {

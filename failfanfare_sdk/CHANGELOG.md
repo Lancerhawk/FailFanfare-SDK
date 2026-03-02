@@ -2,16 +2,32 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.0] - 2026-03-02
+
+### Added
+
+- **Unified Configuration**: CLI now automatically discovers settings in `package.json` or `failfanfare.config.json`.
+- **Custom Sound Support**: Users can now provide their own MP3 files for all events in both Browser and CLI modes.
+- **Key Parity**: CLI now understands browser keys (`runtime`, `console`, `promise`) as fallbacks for error sounds.
+- **Improved CLI Robustness**: Added TTY/Color support (`FORCE_COLOR`) so piped processes like Vite still output errors clearly.
+- **Faster Windows Audio**: Optimized PowerShell `MediaPlayer` execution for lower latency.
+- **Diagnostic Mode**: CLI now logs `[failfanfare] 🎺 Playing Sound...` to confirm detection.
+
+### Fixed
+
+- Fixed CLI "audio loop" bug where a single error would trigger the same sound multiple times.
+- Fixed process exit race condition: added 2s delay to ensure crash sounds finish playing.
+- Fixed dual-stream monitoring: CLI now watches both `stdout` and `stderr` for errors (Vite support).
+
 ## [0.2.0] - 2026-03-02
 
 ### Added
 
-- Hybrid SDK: Browser mode (existing) + new Node CLI mode.
+- Hybrid SDK: Browser mode + new Node CLI mode.
 - CLI wrapper for dev server commands (`npx failfanfare next dev`).
-- Automatic success/error sound detection in terminal logs.
-- Refactored project structure: `src/browser`, `src/cli`, `src/shared`.
 - Native OS audio playback for Node.js (aplay, afplay, powershell).
-- Split build configurations for browser, CLI, and framework adapters.
+- Refactored project structure: `src/browser`, `src/cli`, `src/shared`.
+- Optimized browser build: moved audio assets to CDN to reduce bundle size from 220KB to 4KB.
 
 ## [0.1.0] - 2026-03-02
 
