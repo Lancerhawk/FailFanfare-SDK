@@ -1,0 +1,22 @@
+{
+  "name": "failfanfare-root",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Root of the FailFanfare project",
+  "scripts": {
+    "lint": "npm run lint:sdk",
+    "lint:sdk": "npm run lint --prefix failfanfare_sdk",
+    "lint:webapp": "eslint webapp/**/*.js",
+    "format": "prettier --write .",
+    "build:sdk": "npm run build --prefix failfanfare_sdk"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "prettier": "^3.2.5"
+  }
+}

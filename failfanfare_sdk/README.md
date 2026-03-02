@@ -46,7 +46,11 @@ import { useFailFanfare } from "failfanfare/react";
 
 export default function RootLayout({ children }) {
   useFailFanfare();
-  return <html><body>{children}</body></html>;
+  return (
+    <html>
+      <body>{children}</body>
+    </html>
+  );
 }
 ```
 
@@ -120,11 +124,11 @@ initFailFanfare({
   // Override individual sounds with custom file paths or data URIs.
   // Only the keys you provide are replaced; the rest keep defaults.
   sounds: {
-    runtime:  "/sounds/my-runtime-sound.mp3",
-    promise:  "/sounds/my-promise-sound.mp3",
-    console:  "/sounds/my-console-sound.mp3",
+    runtime: "/sounds/my-runtime-sound.mp3",
+    promise: "/sounds/my-promise-sound.mp3",
+    console: "/sounds/my-console-sound.mp3",
     critical: "/sounds/my-critical-sound.mp3",
-    success:  "/sounds/my-success-sound.mp3",
+    success: "/sounds/my-success-sound.mp3",
   },
 });
 ```
@@ -133,13 +137,13 @@ initFailFanfare({
 
 ## Sound Events
 
-| Event | Trigger | Default Sound |
-|-------|---------|---------------|
-| `runtime` | `window` error event | aabe_saale.mp3 |
-| `promise` | Unhandled promise rejection | bruh.mp3 |
-| `console` | `console.error` (opt-in) | eh.mp3 |
-| `critical` | 5+ rapid errors in one throttle window | spider_man_32.mp3 |
-| `success` | `window.load` — first page load only (opt-in) | oh_my_god_wow.mp3 |
+| Event      | Trigger                                       | Default Sound     |
+| ---------- | --------------------------------------------- | ----------------- |
+| `runtime`  | `window` error event                          | aabe_saale.mp3    |
+| `promise`  | Unhandled promise rejection                   | bruh.mp3          |
+| `console`  | `console.error` (opt-in)                      | eh.mp3            |
+| `critical` | 5+ rapid errors in one throttle window        | spider_man_32.mp3 |
+| `success`  | `window.load` — first page load only (opt-in) | oh_my_god_wow.mp3 |
 
 ### Critical Escalation
 
@@ -153,12 +157,12 @@ If 5 or more errors fire within a single `throttleMs` window, the next playable 
 
 FailFanfare checks the following conditions on every `initFailFanfare()` call:
 
-| Guard | Condition |
-|-------|-----------|
-| Browser check | `typeof window !== "undefined"` |
-| Dev check | `process.env.NODE_ENV !== "production"` |
-| Enabled flag | `options.enabled !== false` |
-| Double-init | Only runs once per page session |
+| Guard         | Condition                               |
+| ------------- | --------------------------------------- |
+| Browser check | `typeof window !== "undefined"`         |
+| Dev check     | `process.env.NODE_ENV !== "production"` |
+| Enabled flag  | `options.enabled !== false`             |
+| Double-init   | Only runs once per page session         |
 
 ---
 
@@ -174,15 +178,15 @@ import type { FailFanfareOptions, SoundEvent } from "failfanfare";
 
 ## Build Outputs
 
-| File | Format | Use case |
-|------|--------|----------|
-| `dist/index.js` | ESM | Bundler (Vite, Webpack, Next) |
-| `dist/index.cjs` | CJS | CommonJS / older bundlers |
-| `dist/index.global.js` | IIFE | Plain `<script>` tag |
-| `dist/index.d.ts` | Types | TypeScript |
-| `dist/adapters/react.*` | ESM + CJS | React hook |
-| `dist/adapters/vue.*` | ESM + CJS | Vue composable |
-| `dist/adapters/angular.*` | ESM + CJS | Angular service |
+| File                      | Format    | Use case                      |
+| ------------------------- | --------- | ----------------------------- |
+| `dist/index.js`           | ESM       | Bundler (Vite, Webpack, Next) |
+| `dist/index.cjs`          | CJS       | CommonJS / older bundlers     |
+| `dist/index.global.js`    | IIFE      | Plain `<script>` tag          |
+| `dist/index.d.ts`         | Types     | TypeScript                    |
+| `dist/adapters/react.*`   | ESM + CJS | React hook                    |
+| `dist/adapters/vue.*`     | ESM + CJS | Vue composable                |
+| `dist/adapters/angular.*` | ESM + CJS | Angular service               |
 
 ---
 
@@ -190,10 +194,10 @@ import type { FailFanfareOptions, SoundEvent } from "failfanfare";
 
 Adapters require the corresponding framework as a peer dependency:
 
-| Adapter | Peer Dependency |
-|---------|----------------|
-| `failfanfare/react` | `react >= 16` |
-| `failfanfare/vue` | `vue >= 3` |
+| Adapter               | Peer Dependency       |
+| --------------------- | --------------------- |
+| `failfanfare/react`   | `react >= 16`         |
+| `failfanfare/vue`     | `vue >= 3`            |
 | `failfanfare/angular` | `@angular/core >= 12` |
 
 All peer dependencies are **optional** — only install what you use.
