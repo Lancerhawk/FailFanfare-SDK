@@ -1,0 +1,79 @@
+{
+    "name": "failfanfare",
+    "version": "0.1.0",
+    "description": "Plays humorous sound effects during development when runtime errors occur in frontend applications.",
+    "author": "Lancerhawk",
+    "license": "MIT",
+    "keywords": [
+        "error",
+        "sound",
+        "development",
+        "debugging",
+        "funny",
+        "react",
+        "vue",
+        "angular",
+        "frontend"
+    ],
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "sideEffects": false,
+    "exports": {
+        ".": {
+            "import": "./dist/index.js",
+            "require": "./dist/index.cjs",
+            "types": "./dist/index.d.ts"
+        },
+        "./react": {
+            "import": "./dist/adapters/react.js",
+            "require": "./dist/adapters/react.cjs",
+            "types": "./dist/adapters/react.d.ts"
+        },
+        "./vue": {
+            "import": "./dist/adapters/vue.js",
+            "require": "./dist/adapters/vue.cjs",
+            "types": "./dist/adapters/vue.d.ts"
+        },
+        "./angular": {
+            "import": "./dist/adapters/angular.js",
+            "require": "./dist/adapters/angular.cjs",
+            "types": "./dist/adapters/angular.d.ts"
+        }
+    },
+    "files": [
+        "dist",
+        "src"
+    ],
+    "scripts": {
+        "build": "tsup",
+        "dev": "tsup --watch",
+        "typecheck": "tsc --noEmit"
+    },
+    "peerDependencies": {
+        "@angular/core": ">=12",
+        "react": ">=16",
+        "vue": ">=3"
+    },
+    "peerDependenciesMeta": {
+        "@angular/core": {
+            "optional": true
+        },
+        "react": {
+            "optional": true
+        },
+        "vue": {
+            "optional": true
+        }
+    },
+    "devDependencies": {
+        "@angular/core": "^17.0.0",
+        "@types/react": "^18.0.0",
+        "react": "^18.0.0",
+        "reflect-metadata": "^0.2.0",
+        "rxjs": "^7.0.0",
+        "tsup": "^8.0.0",
+        "typescript": "^5.0.0",
+        "vue": "^3.0.0"
+    }
+}
