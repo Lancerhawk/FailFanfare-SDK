@@ -3,7 +3,8 @@ export type SoundEvent =
   | "promise"
   | "console"
   | "critical"
-  | "success";
+  | "success"
+  | "error";
 
 export interface FailFanfareOptions {
   enabled?: boolean;

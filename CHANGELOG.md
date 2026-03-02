@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.4.0] - 2026-03-02
+
+### Added
+
+- **Documentation Portal**: Launched a premium React-based technical documentation site in `/webapp`.
+- **Responsive Overhaul**: Entire documentation system is now fluid across mobile and desktop.
+- **SDK v0.3.1 Integration**: Sync with the latest SDK featuring nested configuration support.
+- **Immersive Visuals**: Ambient micro-particle system added to all documentation layers.
+
+### Changed
+
+- Updated project-wide versioning to align with the new platform architecture.
+- Refactored `examples/react-test` to use the latest SDK build.
+
 ## [0.3.0] - 2026-03-02
 
 ### Added

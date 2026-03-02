@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.1] - 2026-03-02
+
+### Added
+
+- **Nested Config Support**: CLI and Browser now support a `sounds` sub-object in `package.json` for cleaner organization.
+- **Visual Overhaul**: Documentation site (`webapp`) revised for fluid responsive behavior across all breakpoints.
+- **Fun Visuals**: 180+ micro-particles with ambient drift and glow for a dynamic aesthetic.
+
+### Fixed
+
+- **TS Coordinate Logic**: Fixed coordinate property errors in the particle background system.
+- **CLI Arg Parsing**: Refined flag detection to prevent conflicts with sub-shell commands.
+
 ## [0.3.0] - 2026-03-02
 
 ### Added
