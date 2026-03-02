@@ -1,9 +1,12 @@
+/// <reference types="node" />
 import { defineConfig } from "tsup";
+import { copyFileSync, mkdirSync, readdirSync } from "fs";
+import { join } from "path";
 
 export default defineConfig([
-  // ─── Main entry: ESM + CJS + IIFE ─────────────────────────────────────────
+  // ── 1. Browser main entry: ESM + CJS + IIFE ─────────────────────────────
   {
-    entry: { index: "src/index.ts" },
+    entry: { index: "src/browser/index.ts" },
     format: ["esm", "cjs", "iife"],
     globalName: "FailFanfare",
     outDir: "dist",
@@ -11,6 +14,7 @@ export default defineConfig([
     sourcemap: true,
     clean: true,
     target: "es2017",
+    platform: "browser",
     loader: { ".mp3": "base64" },
     outExtension({ format }) {
       if (format === "cjs") return { js: ".cjs" };
@@ -24,10 +28,7 @@ export default defineConfig([
     },
   },
 
-  // ─── Framework adapters: ESM + CJS only (no IIFE globals) ─────────────────
-  // Adapters import from "../index" at runtime. We bundle them independently
-  // (each includes the core) which is acceptable for a dev-only SDK.
-  // Since this is dev-only, the bundle size trade-off is fine.
+  // ── 2. Framework adapters: ESM + CJS only ────────────────────────────────
   {
     entry: {
       "adapters/react": "src/adapters/react.ts",
@@ -39,11 +40,43 @@ export default defineConfig([
     dts: true,
     sourcemap: true,
     target: "es2017",
+    platform: "browser",
     loader: { ".mp3": "base64" },
     outExtension({ format }) {
       return { js: format === "cjs" ? ".cjs" : ".js" };
     },
-    // Keep framework peer deps external — do NOT bundle React/Vue/Angular
     external: ["react", "vue", "@angular/core"],
+  },
+
+  // ── 3. CLI entry: CJS only, Node platform ────────────────────────────────
+  {
+    entry: { "cli/index": "src/cli/index.ts" },
+    format: ["cjs"],
+    outDir: "dist",
+    dts: false,
+    sourcemap: false,
+    target: "node18",
+    platform: "node",
+    outExtension() {
+      return { js: ".cjs" };
+    },
+    banner: {
+      js: "#!/usr/bin/env node",
+    },
+    onSuccess: async () => {
+      const root = process.cwd();
+      const srcSounds = join(root, "src/sounds");
+      const distSounds = join(root, "dist/sounds");
+      mkdirSync(distSounds, { recursive: true });
+      const files = readdirSync(srcSounds).filter((f: string) =>
+        f.endsWith(".mp3")
+      );
+      for (const file of files) {
+        copyFileSync(join(srcSounds, file), join(distSounds, file));
+      }
+      console.log(
+        `[failfanfare] Copied ${files.length} sounds to dist/sounds/`
+      );
+    },
   },
 ]);

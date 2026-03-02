@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.0] - 2026-03-02
+
+### Added
+
+- Hybrid SDK: Browser mode (existing) + new Node CLI mode.
+- CLI wrapper for dev server commands (`npx failfanfare next dev`).
+- Automatic success/error sound detection in terminal logs.
+- Refactored project structure: `src/browser`, `src/cli`, `src/shared`.
+- Native OS audio playback for Node.js (aplay, afplay, powershell).
+- Split build configurations for browser, CLI, and framework adapters.
+
 ## [0.1.0] - 2026-03-02
 
 ### Added

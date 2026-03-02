@@ -1,6 +1,6 @@
 # failfanfare 🎺
 
-> Plays humorous sound effects when runtime errors occur during development.
+> Plays humorous sound effects when runtime errors occur during development. Also wraps your dev server with crash sound detection.
 
 [![npm version](https://img.shields.io/npm/v/failfanfare)](https://www.npmjs.com/package/failfanfare)
 [![license](https://img.shields.io/npm/l/failfanfare)](./LICENSE)
@@ -9,9 +9,33 @@
 
 ## What it does
 
-`failfanfare` listens for browser runtime errors and plays funny MP3 sounds in response — making broken builds a little less painful during development.
+`failfanfare` has two modes:
+
+- **Browser mode**: Listens for runtime errors in the browser and plays funny MP3 sounds in response.
+- **CLI mode**: Wraps your dev server command (`next dev`, `npm run dev`, `vite`, etc.) and plays sounds when the process crashes or starts successfully.
 
 **It is unconditionally disabled in production** (checks `NODE_ENV`) and **never runs during SSR** (checks `typeof window`).
+
+---
+
+## CLI Usage
+
+Wrap any dev server command — no config required:
+
+```bash
+npx failfanfare npm run dev
+npx failfanfare next dev
+npx failfanfare vite
+npx failfanfare yarn dev
+```
+
+**What it does:**
+
+- ✅ Mirrors all stdout/stderr output to your terminal.
+- 🔊 Plays a **success sound** when the server starts (detects: `ready`, `compiled successfully`, `Local:`, `started`, `listening`).
+- 💥 Plays a **crash sound** when an error keyword is detected in stderr (`error`, `failed`, `exception`, `crash`).
+- 💀 Plays a **critical sound** when the process exits with a non-zero exit code.
+- ⌨️ Forwards `SIGINT` (Ctrl+C) to the child process cleanly.
 
 ---
 
@@ -187,6 +211,8 @@ import type { FailFanfareOptions, SoundEvent } from "failfanfare";
 | `dist/adapters/react.*`   | ESM + CJS | React hook                    |
 | `dist/adapters/vue.*`     | ESM + CJS | Vue composable                |
 | `dist/adapters/angular.*` | ESM + CJS | Angular service               |
+| `dist/cli/index.cjs`      | CJS/Node  | CLI binary                    |
+| `dist/sounds/*.mp3`       | Assets    | CLI audio files               |
 
 ---
 

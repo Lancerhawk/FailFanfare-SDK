@@ -1,5 +1,5 @@
 import type { ResolvedConfig, SoundEvent } from "./types";
-import { playSound } from "./utils/audio";
+import { playBrowserSound } from "../shared/audio.browser";
 import { shouldPlay } from "./utils/throttle";
 
 let successPlayed = false;
@@ -11,7 +11,7 @@ export function startRuntime(config: ResolvedConfig): void {
   function trigger(event: SoundEvent): void {
     const resolved = shouldPlay(event, throttleMs);
     if (resolved !== null) {
-      playSound(sounds[resolved], volume);
+      playBrowserSound(sounds[resolved], volume);
     }
   }
 
@@ -39,7 +39,7 @@ export function startRuntime(config: ResolvedConfig): void {
         () => {
           if (!successPlayed) {
             successPlayed = true;
-            playSound(sounds["success"], volume);
+            playBrowserSound(sounds["success"], volume);
           }
         },
         { once: true }

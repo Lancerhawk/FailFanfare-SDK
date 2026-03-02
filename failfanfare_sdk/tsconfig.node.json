@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "lib": ["ES2018"],
+    "types": ["node"]
+  },
+  "include": ["src/cli/**/*", "src/shared/**/*", "tsup.config.ts"],
+  "exclude": ["src/shared/audio.browser.ts"]
+}

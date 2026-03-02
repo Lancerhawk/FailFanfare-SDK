@@ -1,7 +1,7 @@
 {
   "name": "failfanfare",
-  "version": "0.1.0",
-  "description": "Plays humorous sound effects during development when runtime errors occur in frontend applications.",
+  "version": "0.2.0",
+  "description": "Plays humorous sound effects when runtime errors occur. Also wraps your dev server CLI with crash sound detection.",
   "author": "Lancerhawk",
   "license": "MIT",
   "keywords": [
@@ -13,37 +13,41 @@
     "react",
     "vue",
     "angular",
-    "frontend"
+    "frontend",
+    "cli",
+    "dev-server"
   ],
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "bin": {
+    "failfanfare": "./dist/cli/index.cjs"
+  },
   "sideEffects": false,
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
-      "require": "./dist/index.cjs",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/index.cjs"
     },
     "./react": {
+      "types": "./dist/adapters/react.d.ts",
       "import": "./dist/adapters/react.js",
-      "require": "./dist/adapters/react.cjs",
-      "types": "./dist/adapters/react.d.ts"
+      "require": "./dist/adapters/react.cjs"
     },
     "./vue": {
+      "types": "./dist/adapters/vue.d.ts",
       "import": "./dist/adapters/vue.js",
-      "require": "./dist/adapters/vue.cjs",
-      "types": "./dist/adapters/vue.d.ts"
+      "require": "./dist/adapters/vue.cjs"
     },
     "./angular": {
+      "types": "./dist/adapters/angular.d.ts",
       "import": "./dist/adapters/angular.js",
-      "require": "./dist/adapters/angular.cjs",
-      "types": "./dist/adapters/angular.d.ts"
+      "require": "./dist/adapters/angular.cjs"
     }
   },
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "scripts": {
     "build": "tsup",
@@ -69,6 +73,7 @@
   },
   "devDependencies": {
     "@angular/core": "^17.0.0",
+    "@types/node": "^20.19.35",
     "@types/react": "^18.0.0",
     "react": "^18.0.0",
     "reflect-metadata": "^0.2.0",

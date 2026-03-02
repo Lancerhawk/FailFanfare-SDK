@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.0] - 2026-03-02
+
+### Added
+
+- Hybrid SDK: browser mode (existing) + new Node CLI mode.
+- CLI wraps any dev-server command (`npx failfanfare next dev`).
+- Sound triggers on dev-server startup, crash, and unclean exit.
+- `src/cli/` with `index.ts` and `watcher.ts`.
+- `src/shared/audio.player.ts` for Node-compatible OS audio playback.
+- Split tsup build into 3 configs: browser, adapters, CLI.
+- MP3 sounds now copied to `dist/sounds/` for CLI use.
+
 ## [0.1.0] - 2026-03-02
 
 ### Added
