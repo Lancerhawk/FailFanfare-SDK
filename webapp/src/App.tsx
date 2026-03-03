@@ -691,7 +691,7 @@ const App: React.FC = () => {
       <VersionsModal isOpen={isVersionsOpen} onClose={() => setIsVersionsOpen(false)} />
       <button className="version-badge" onClick={() => setIsVersionsOpen(true)}>
         <img src="/logo.svg" alt="" style={{ width: '22px' }} />
-        v0.4.0
+        v0.4.1
       </button>
 
       <footer

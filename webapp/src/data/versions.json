@@ -1,5 +1,17 @@
 [
     {
+        "version": "0.4.1",
+        "date": "2026-03-03",
+        "changes": {
+            "Added": [
+                "Mobile Responsiveness Overhaul: Entire documentation system in /webapp is now fully fluid and optimized for all mobile devices.",
+                "Fluid Typography: Implemented clamp() based font scaling for headings and subtitles.",
+                "Responsive Tables: Added horizontal scrolling containers for tables with touch support on mobile.",
+                "Enhanced Layout: Optimized feature cards and landing buttons for vertical stacking on small screens."
+            ]
+        }
+    },
+    {
         "version": "0.4.0",
         "date": "2026-03-02",
         "changes": {
